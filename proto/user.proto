@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./";
+
+message UserAddReq {
+  string name = 1;
+  string password = 2;
+}
+
+message UserAddResp {
+  string msg = 1;
+  int32 code = 2;
+}
+message RoleAddReq {
+  int32 Uid = 1;
+  string Name = 2;
+}
+
+message RoleAddResp {
+  string msg = 1;
+  int32 code = 2;
+}
+message QuanXianAddReq {
+  int32 Rid = 1;
+  int32 Uid = 2;
+  string Name = 3;
+}
+
+message QuanXianAddResp {
+  string msg = 1;
+  int32 code = 2;
+}
+message RoleListReq {
+  int32 id = 1;
+  repeated RoleList List = 2;
+}
+message RoleList{
+  int32 Rid = 1;
+  int32 Uid = 2;
+  string Name = 3;
+}
+message RoleListResp {
+  string msg = 1;
+  int32 code = 2;
+  string list = 3;
+}
+message RoleDeleteReq {
+  int32 id = 1;
+}
+
+message RoleDeleteResp {
+  string msg = 1;
+  int32 code = 2;
+}
+service StreamGreeter {
+  rpc UserAdd(UserAddReq) returns (UserAddResp);
+  rpc RoleAdd(RoleAddReq) returns (RoleAddResp);
+  rpc RoleList(RoleListReq) returns (RoleListResp);
+  rpc RoleDelete(RoleDeleteReq) returns (RoleDeleteResp);
+  rpc QuanXianAdd(QuanXianAddReq) returns (QuanXianAddResp);
+}
